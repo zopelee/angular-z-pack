@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
+var ngAnnotate = require('gulp-ng-annotate');
 
 gulp.task('scripts', function () {
   var src = ['src/modules/*.js'];
@@ -10,6 +11,7 @@ gulp.task('scripts', function () {
           .pipe(gulp.dest('dist'));
   gulp.src(src)   // order matters
           .pipe(sourcemaps.init())
+          .pipe(ngAnnotate())
           .pipe(concat('angular-z-pack.min.js'))
           .pipe(uglify())
           .pipe(sourcemaps.write('./'))
