@@ -4,13 +4,13 @@ var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('scripts', function () {
-  var src = ['modules/*.js'];
+  var src = ['src/modules/*.js'];
   gulp.src(src)
-          .pipe(concat('ng-z-pack.js'))
+          .pipe(concat('angular-z-pack.js'))
           .pipe(gulp.dest('dist'));
   gulp.src(src)   // order matters
           .pipe(sourcemaps.init())
-          .pipe(concat('ng-z-pack.min.js'))
+          .pipe(concat('angular-z-pack.min.js'))
           .pipe(uglify())
           .pipe(sourcemaps.write('./'))
           .pipe(gulp.dest('dist'));
