@@ -1,0 +1,15 @@
+{
+  "name": "ng-z-pack",
+  "authors": [
+    "zopelee@gmail.com"
+  ],
+  "description": "Common angular modules to inject.",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
