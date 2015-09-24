@@ -21,6 +21,8 @@ angular.module('zCommonLib').run(function ($rootScope, $window) {
     $window.scrollTo(0, 0); //scroll to top of page after each route change
   });
 });
+angular.module('zFilterLib', []);
+
 angular.module('zFilterLib').filter('dateFormat', function ($filter) {
   return function (input, format) {
     var str
