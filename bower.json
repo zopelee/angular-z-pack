@@ -11,7 +11,7 @@
     "bower_components",
     "test",
     "tests",
-    "index.html"
+    "www"
   ],
   "main": [
     "dist/angular-z-pack.js"

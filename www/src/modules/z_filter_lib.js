@@ -1,3 +1,5 @@
+angular.module('zFilterLib', []);
+
 angular.module('zFilterLib').filter('dateFormat', function ($filter) {
   return function (input, format) {
     var str
