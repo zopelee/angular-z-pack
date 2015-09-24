@@ -21,6 +21,17 @@ angular.module('zCommonLib').run(function ($rootScope, $window) {
     $window.scrollTo(0, 0); //scroll to top of page after each route change
   });
 });
+angular.module('zFilterLib').filter('dateFormat', function ($filter) {
+  return function (input, format) {
+    var str
+    try {
+      str = $filter('date')(new Date(input), format)
+    } catch (err) {
+      str = ''
+    }
+    return str
+  };
+});
 angular.module('zI18nLib', ['ngRoute', 'pascalprecht.translate', 'ngCookies', 'ngSanitize']);
 
 angular.module('zI18nLib').config(function ($translateProvider, $translatePartialLoaderProvider) {

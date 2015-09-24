@@ -5,7 +5,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var ngAnnotate = require('gulp-ng-annotate');
 
 gulp.task('scripts', function () {
-  var src = ['src/modules/*.js'];
+  var src = ['www/src/modules/*.js'];
   gulp.src(src)
           .pipe(concat('angular-z-pack.js'))
           .pipe(gulp.dest('dist'));
