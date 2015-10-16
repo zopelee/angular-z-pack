@@ -84,3 +84,11 @@ angular.module('zNocacheLib').config(function ($httpProvider) {
   $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
   $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
 });
+
+angular.module('zCommonLib').factory('zFunctionService', function ($http) {
+  return {
+    stringifyJson: function (obj) {
+      return encodeURIComponent(JSON.stringify(obj))
+    }
+  }
+})
