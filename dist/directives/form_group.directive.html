@@ -1,0 +1,12 @@
+<div class="form-group" 
+     ng-init="model = model || input.default"
+     ng-class="{'has-error': errors[inputname][0]}"
+     >
+  <label class="control-label col-md-2">{{input.title}}</label>
+  <div class="col-md-9">
+    <input ng-show="input.type === 'text'" ng-model="model" ng-value="input.default" type="text" class="form-control">
+    <textarea ng-show="input.type === 'textarea'" ng-model="model" type="text" class="form-control">{{input.default}}</textarea>
+    <select ng-show="input.type === 'select'" ng-options="opt.id as opt.text for opt in input.options" ng-model="model" class="form-control"></select>
+    <div ng-show="errors[inputname][0]" class="help-block">{{errors[inputname][0]}}</div>
+  </div>
+</div>

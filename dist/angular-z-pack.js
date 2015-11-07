@@ -11,8 +11,8 @@ angular.module('zCommonLib').config(function ($httpProvider) {
       return str.join("&");
     }
   };
-  $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-  $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded';
+  $httpProvider.defaults.headers.post['Content-Type'] = 'application/json';
+  $httpProvider.defaults.headers.put['Content-Type'] = 'application/json';
   $httpProvider.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 });
 
@@ -89,6 +89,30 @@ angular.module('zCommonLib').factory('zFunctionService', function ($http) {
   return {
     stringifyJson: function (obj) {
       return encodeURIComponent(JSON.stringify(obj))
+    }
+  }
+})
+angular.module('zCommonLib').directive('formGroup', function formGroup() {
+  return {
+    restrict: 'AE',
+    templateUrl: function (tElement, tAttrs) {
+      return tAttrs.templateUrl || 'bower_components/angular-z-pack/dist/directives/form_group.directive.html'
+    },
+    scope: {
+      inputname: '=',
+      input: '=',
+      model: '=',
+      errors: '='
+    },
+    controller: function ($scope, $element, $attrs) {
+      // observe changes in attribute - could also be scope.$watch
+//      $attrs.$observe('formGroup', function (value) {
+//        if (value) {
+//          console.log(value);
+//          // pass value to app controller
+//          $scope.variable = value;
+//        }
+//      });
     }
   }
 })

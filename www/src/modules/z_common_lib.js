@@ -11,8 +11,8 @@ angular.module('zCommonLib').config(function ($httpProvider) {
       return str.join("&");
     }
   };
-  $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-  $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded';
+  $httpProvider.defaults.headers.post['Content-Type'] = 'application/json';
+  $httpProvider.defaults.headers.put['Content-Type'] = 'application/json';
   $httpProvider.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 });
 
