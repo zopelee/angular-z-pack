@@ -1,16 +1,6 @@
 angular.module('zCommonLib', []);
 
 angular.module('zCommonLib').config(function ($httpProvider) {
-  $httpProvider.defaults.transformRequest = function (data) {
-    if (data === undefined || data instanceof String) {
-      return data;
-    } else {
-      var str = [];
-      for (var p in data)
-        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(data[p]));
-      return str.join("&");
-    }
-  };
   $httpProvider.defaults.headers.post['Content-Type'] = 'application/json';
   $httpProvider.defaults.headers.put['Content-Type'] = 'application/json';
   $httpProvider.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
