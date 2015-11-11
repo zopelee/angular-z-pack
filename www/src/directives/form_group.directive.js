@@ -1,4 +1,4 @@
-angular.module('zCommonLib').directive('formGroup', function formGroup() {
+angular.module('zDirectiveLib').directive('formGroup', function () {
   return {
     restrict: 'AE',
     templateUrl: function (tElement, tAttrs) {
@@ -8,17 +8,17 @@ angular.module('zCommonLib').directive('formGroup', function formGroup() {
       inputname: '=',
       input: '=',
       model: '=',
-      errors: '='
+      errors: '=',
+      onFileSelected: '&',
+      onFileUploaded: '&'
     },
     controller: function ($scope, $element, $attrs) {
-      // observe changes in attribute - could also be scope.$watch
-//      $attrs.$observe('formGroup', function (value) {
-//        if (value) {
-//          console.log(value);
-//          // pass value to app controller
-//          $scope.variable = value;
-//        }
-//      });
+      $scope.onFileSelected2 = function ($flow) {
+        $scope.onFileSelected()($flow)
+      }
+      $scope.onFileUploaded2 = function ($file, $message, $flow) {
+        $scope.onFileUploaded()($file, $message, $flow)
+      }
     }
   }
 })
