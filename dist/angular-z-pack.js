@@ -11,6 +11,7 @@ angular.module('zCommonLib').run(function ($rootScope, $window) {
     $window.scrollTo(0, 0); //scroll to top of page after each route change
   });
 });
+angular.module('zDirectiveLib', ['flow'])
 angular.module('zFilterLib', []);
 
 angular.module('zFilterLib').filter('dateFormat', function ($filter) {
@@ -75,14 +76,15 @@ angular.module('zNocacheLib').config(function ($httpProvider) {
   $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
 });
 
-angular.module('zCommonLib').factory('zFunctionService', function ($http) {
+angular.module('zServiceLib', [])
+angular.module('zServiceLib').factory('zFunctionService', function ($http) {
   return {
     stringifyJson: function (obj) {
       return encodeURIComponent(JSON.stringify(obj))
     }
   }
 })
-angular.module('zCommonLib').directive('formGroup', function formGroup() {
+angular.module('zDirectiveLib').directive('formGroup', function () {
   return {
     restrict: 'AE',
     templateUrl: function (tElement, tAttrs) {
@@ -92,17 +94,17 @@ angular.module('zCommonLib').directive('formGroup', function formGroup() {
       inputname: '=',
       input: '=',
       model: '=',
-      errors: '='
+      errors: '=',
+      onFileSelected: '&',
+      onFileUploaded: '&'
     },
     controller: function ($scope, $element, $attrs) {
-      // observe changes in attribute - could also be scope.$watch
-//      $attrs.$observe('formGroup', function (value) {
-//        if (value) {
-//          console.log(value);
-//          // pass value to app controller
-//          $scope.variable = value;
-//        }
-//      });
+      $scope.onFileSelected2 = function ($flow) {
+        $scope.onFileSelected()($flow)
+      }
+      $scope.onFileUploaded2 = function ($file, $message, $flow) {
+        $scope.onFileUploaded()($file, $message, $flow)
+      }
     }
   }
 })
