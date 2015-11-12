@@ -4,18 +4,18 @@
      >
   <label class="control-label col-md-2">{{input.title}}</label>
   <div class="col-md-9">
-    <input ng-if="input.type === 'text'" ng-model="model" ng-value="input.default" type="text" class="form-control">
-    <textarea ng-if="input.type === 'textarea'" ng-model="model" type="text" class="form-control">{{input.default}}</textarea>
-    <select ng-if="input.type === 'select'" ng-options="opt.id as opt.text for opt in input.options" ng-model="model" class="form-control"></select>
-    <div ng-if="input.type === 'file'"
-         ng-init="src = model"
-         flow-init="{target: '/cms/upload', singleFile: true}"
-         flow-files-submitted="onFileSelected2($flow)"
-         flow-file-success="onFileUploaded2($file, $message, $flow); last_file = $file"
+    <input ng-show="input.type === 'text'" ng-model="model" ng-value="input.default" type="text" class="form-control">
+    <textarea ng-show="input.type === 'textarea'" ng-model="model" type="text" class="form-control">{{input.default}}</textarea>
+    <select ng-show="input.type === 'select'" ng-options="opt.id as opt.text for opt in input.options" ng-model="model" class="form-control"></select>
+    <div ng-show="input.type === 'file'"
+         ng-init="src = model; init();"
+         flow-init="{target: 'upload', singleFile: true, testChunks:false}"
+         flow-files-submitted="onFileSelected2($flow, {inputname: inputname})"
+         flow-file-success="onFileUploaded2($file, $message, $flow, {inputname: inputname}); last_file = $file"
          >
       <span flow-btn class="btn btn-default">Upload</span>
       <br>
-      <div ng-show="$flow.files[0] || src" class="form-control img-preview">
+      <div ng-if="input.type === 'file' && ($flow.files[0] || src)" class="form-control img-preview">
         <img ng-show="$flow.files[0] && !last_file" flow-img="$flow.files[0]">
         <img ng-show="last_file" flow-img="last_file">
         <img ng-show="!$flow.files[0] && !last_file && src" ng-src="{{src}}">

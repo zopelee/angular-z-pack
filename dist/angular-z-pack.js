@@ -99,11 +99,11 @@ angular.module('zDirectiveLib').directive('formGroup', function () {
       onFileUploaded: '&'
     },
     controller: function ($scope, $element, $attrs) {
-      $scope.onFileSelected2 = function ($flow) {
-        $scope.onFileSelected()($flow)
+      $scope.onFileSelected2 = function ($flow, options) {
+        $scope.onFileSelected()($flow, options)
       }
-      $scope.onFileUploaded2 = function ($file, $message, $flow) {
-        $scope.onFileUploaded()($file, $message, $flow)
+      $scope.onFileUploaded2 = function ($file, $message, $flow, options) {
+        $scope.onFileUploaded()($file, $message, $flow, options)
       }
     }
   }
