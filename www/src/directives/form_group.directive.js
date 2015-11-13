@@ -1,4 +1,4 @@
-angular.module('zDirectiveLib').directive('formGroup', ['ngFileUpload', function () {
+angular.module('zDirectiveLib').directive('formGroup', function () {
   return {
     restrict: 'AE',
     templateUrl: function (tElement, tAttrs) {
@@ -37,4 +37,4 @@ angular.module('zDirectiveLib').directive('formGroup', ['ngFileUpload', function
 //      })
     }
   }
-}])
+})

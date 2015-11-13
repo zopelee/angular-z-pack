@@ -1,1 +1,1 @@
-angular.module('zDirectiveLib', [])
+angular.module('zDirectiveLib', ['ngFileUpload'])
