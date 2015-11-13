@@ -1,1 +1,1 @@
-angular.module('zDirectiveLib', ['flow'])
+angular.module('zDirectiveLib', [])

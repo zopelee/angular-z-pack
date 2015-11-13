@@ -11,7 +11,7 @@ angular.module('zCommonLib').run(function ($rootScope, $window) {
     $window.scrollTo(0, 0); //scroll to top of page after each route change
   });
 });
-angular.module('zDirectiveLib', ['flow'])
+angular.module('zDirectiveLib', [])
 angular.module('zFilterLib', []);
 
 angular.module('zFilterLib').filter('dateFormat', function ($filter) {
@@ -84,7 +84,7 @@ angular.module('zServiceLib').factory('zFunctionService', function ($http) {
     }
   }
 })
-angular.module('zDirectiveLib').directive('formGroup', function () {
+angular.module('zDirectiveLib').directive('formGroup', ['ngFileUpload', function () {
   return {
     restrict: 'AE',
     templateUrl: function (tElement, tAttrs) {
@@ -99,12 +99,28 @@ angular.module('zDirectiveLib').directive('formGroup', function () {
       onFileUploaded: '&'
     },
     controller: function ($scope, $element, $attrs) {
+//      $scope.val
+//      $scope.model
+
       $scope.onFileSelected2 = function ($flow, options) {
         $scope.onFileSelected()($flow, options)
       }
       $scope.onFileUploaded2 = function ($file, $message, $flow, options) {
         $scope.onFileUploaded()($file, $message, $flow, options)
       }
+
+//       observe changes in attribute - could also be scope.$watch
+//      $scope.$watch('model', function (value) {
+////        console.log($scope)
+////        console.log($element)
+////        console.log($attrs)
+//        if (value) {
+////          console.log(value)
+//          // pass value to app controller
+//          $scope.model = value
+//          $scope.val = ($scope.model[$scope.input.column || $scope.inputname]) || $scope.input.default
+//        }
+//      })
     }
   }
-})
+}])

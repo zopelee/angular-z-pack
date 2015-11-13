@@ -1,27 +1,23 @@
+<!--also need to watch model in directive controller coz model might be null at the moment-->
 <div class="form-group" 
-     ng-init="model = model || input.default"
+     ng-init="inputname = input.column || inputname;"
      ng-class="{'has-error': errors[inputname][0]}"
      >
   <label class="control-label col-md-2">{{input.title}}</label>
   <div class="col-md-9">
-    <input ng-show="input.type === 'text'" ng-model="model" ng-value="input.default" type="text" class="form-control">
-    <textarea ng-show="input.type === 'textarea'" ng-model="model" type="text" class="form-control">{{input.default}}</textarea>
-    <select ng-show="input.type === 'select'" ng-options="opt.id as opt.text for opt in input.options" ng-model="model" class="form-control"></select>
-    <div ng-show="input.type === 'file'"
-         ng-init="src = model; init();"
-         flow-init="{target: 'upload', singleFile: true, testChunks:false}"
-         flow-files-submitted="onFileSelected2($flow, {inputname: inputname})"
-         flow-file-success="onFileUploaded2($file, $message, $flow, {inputname: inputname}); last_file = $file"
-         >
-      <span flow-btn class="btn btn-default">Upload</span>
+    <input ng-if="input.type === 'text'" ng-model="model[inputname]" ng-value="input.default" type="text" class="form-control">
+    <textarea ng-if="input.type === 'textarea'" ng-model="model[inputname]" type="text" class="form-control">{{input.default}}</textarea>
+    <select ng-if="input.type === 'select'" ng-options="opt.id as opt.text for opt in input.options" ng-model="model[inputname]" class="form-control"></select>
+    <div ng-if="input.type === 'file'">
+      <div ngf-select class="btn btn-default" ng-model="model[inputname + '_fileobj']" 
+           ngf-pattern="'image/*'" accept="image/*" ngf-max-size="1MB">Select</div>
       <br>
-      <div ng-if="input.type === 'file' && ($flow.files[0] || src)" class="form-control img-preview">
-        <img ng-show="$flow.files[0] && !last_file" flow-img="$flow.files[0]">
-        <img ng-show="last_file" flow-img="last_file">
-        <img ng-show="!$flow.files[0] && !last_file && src" ng-src="{{src}}">
+      <div ng-if="input.type === 'file' && (model[inputname + '_fileobj'] || model[inputname + '_for_display'])" class="form-control img-preview">
+        <img ng-show="model[inputname + '_fileobj']" ngf-thumbnail="model[inputname + '_fileobj']">
+        <img ng-show="!model[inputname + '_fileobj'] && model[inputname + '_for_display']" ngf-thumbnail="model[inputname + '_for_display']">
       </div>
     </div>
-    
+
     <div ng-show="errors[inputname][0]" class="help-block">{{errors[inputname][0]}}</div>
   </div>
 </div>
