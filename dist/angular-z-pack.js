@@ -1,4 +1,4 @@
-angular.module('zCommonLib', []);
+angular.module('zCommonLib', ['cgBusy']);
 
 angular.module('zCommonLib').config(function ($httpProvider) {
   $httpProvider.defaults.headers.post['Content-Type'] = 'application/json';
