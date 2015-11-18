@@ -1,6 +1,7 @@
 <!--also need to watch model in directive controller coz model might be null at the moment-->
+<!--need to convert null value to empty string in ng-init coz when submit null rails will save as string 'null'-->
 <div class="form-group" 
-     ng-init="name = input.column || inputname;"
+     ng-init="name = input.column || inputname; model[name] = model[name] || '';"
      ng-class="{'has-error': errors[input.column][0] || errors[inputname][0]}"
      >
   <label class="control-label col-md-2">{{input.title}}</label>
